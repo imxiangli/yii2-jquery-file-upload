@@ -28,6 +28,9 @@ class JQFileUpLoadWidget extends InputWidget
 	/** @var JsExpression */
 	public $done = null;
 
+	/** @var JsExpression */
+	public $submit = null;
+
 	public function init()
 	{
 		parent::init();
@@ -71,7 +74,8 @@ class JQFileUpLoadWidget extends InputWidget
 		$script = "$('#{$this->options['id']}').fileupload({
         dataType: 'json',
         formData: {$formDate}, 
-        done: {$this->done}
+        done: {$this->done},
+        submit: {$this->submit},
 });";
 		$this->view->registerJs($script, View::POS_READY);
 	}
