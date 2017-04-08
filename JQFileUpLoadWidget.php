@@ -69,13 +69,18 @@ class JQFileUpLoadWidget extends InputWidget
 
 	protected function registerClientScript()
 	{
+	    $submit = '';
+	    if($this->submit)
+        {
+            $submit = ",submit: {$this->submit}";
+        }
 	    $formDate = Json::encode($this->formData, 336);
 		JQueryFileUploadAsset::register($this->view);
 		$script = "$('#{$this->options['id']}').fileupload({
         dataType: 'json',
         formData: {$formDate}, 
-        done: {$this->done},
-        submit: {$this->submit},
+        done: {$this->done}
+        {$submit}
 });";
 		$this->view->registerJs($script, View::POS_READY);
 	}
